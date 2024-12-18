@@ -1,0 +1,974 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+:root{
+    /* -- Couleur de du Haut de page -- */
+    --header-color: black;
+    --header-font: white;
+    --header-title-font: white;
+    --header-menu-color: white;
+    --header-menu-font: white;
+    --header-menu-hover: white;
+    --header-icon: white;
+    --header-icon-hover: lightgrey;
+
+    /* -- Couleur de la colonne de gauche -- */
+    --leftCol-color: #f5f5f5;
+    --leftCol-font: black;
+    --leftCol-menu-color: rgba(0, 0, 0, 0.9);
+    --leftCol-menu-font: rgba(255, 255, 255, 0.95);
+    --leftCol-menu-hover: rgba(0, 0, 0, 0.75);
+    --leftCol-border: black;
+
+    /* -- Couleur de le la colonne de droite -- */
+    --rightCol-color: #f5f5f5;
+    --about: #d1b580;
+
+    /* -- Couleur de du Bas de page -- */
+    --footer-color: black;
+    --footer-font: lightgrey;
+    --footer-hover: white;
+    --footer-headband: grey;
+    --footer-headband-icon: white;
+
+    /* -- Polices -- */
+    --rightCol: arial, sans-serif;;
+    --leftCol: 'Poppins', sans-serif;
+    --footer: arial, sans-serif;
+}
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+    background-color: #f5f5f5;
+}
+
+/* -- Haut de page -- */
+
+#mainHeader{
+    display: grid;
+    grid-template-columns: 140px auto 70px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header-color);
+    height: 140px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+/* ,Haut de page - Logo */
+#mainHeader-left{
+    display: flex;
+    align-items: center;
+}
+
+/* Logo */
+#headerLogo{
+    font-weight: bold;
+    font-size: 24px;
+    height: 120px;
+    width: auto;
+    padding-left: 20px;
+    text-transform: uppercase;
+    color: var(--header-font);
+    text-decoration: none;
+    /* Note : Les différents styles pour du texte sont là au cas où l'image ne s'affiche pas*/
+}
+
+/* Accès sourd et malentendant, l'appareil audio va lire le contenu de la class, mais on ne l'affiche pas */
+.accessibility{
+    position: absolute;
+    left: -15000px;
+}
+
+/* Haut de page - Titre */
+#mainHeader-right h1{
+    display: none;
+}
+
+/* Haut de page - Menu */
+#mainHeader-right{
+    display: flex;
+    align-items: center;
+}
+  
+#mainHeader-right ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+  
+#mainHeader-right a{
+    color: var(--header-menu-font);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+}
+  
+#mainHeader-right a:hover{
+    color: var(--header-menu-hover);
+    padding: 5px;
+    font-size: 150%;
+}
+
+/* Haut de page - Accès au compte et au panier */
+#access{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+}
+
+#access a{
+    color: var(--header-icon);
+}
+
+#access a:first-of-type{
+    margin-right: 10px;
+}
+
+#access i{
+    font-size: 30px;
+}
+
+#access a:hover{
+    color: var(--header-icon-hover);
+    transition: all 0.2s ease;
+}
+
+#access span{
+    width: 25px;
+    height: 25px;
+    position: fixed;
+    top: 35px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: green;
+    color: white;
+}
+
+/* -- Contenu de page -- */
+
+#pageContent{
+    padding-top: 140px;
+    min-height: calc(100vh - 140px);
+}
+
+/* Partie gauche - Liens vers produits */
+#leftCol{
+    background-color: var(--leftCol-color);
+    border: 1px solid var(--leftCol-border);
+    border-left: none;
+    font-family: var(--leftCol);
+    font-weight: 550;
+    height: auto;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    transition: 0.5s ease;
+    transform: translateX(-250px);
+    padding-bottom: 10px;
+}
+
+#leftCol #lat-menu{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+#leftCol h1{
+    font-size: 1.2em;
+    text-decoration: underline;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#leftCol ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#leftCol li{
+    background-color: var(--leftCol-menu-color);
+    margin: 10px;
+    padding: 10px 0 10px 0;
+}
+
+#leftCol a{
+    text-decoration: none;
+    color: var(--leftCol-menu-font);
+}
+
+#leftCol li:hover{
+    background-color: var(--leftCol-menu-hover);
+    transition: all 0.2s ease;
+    font-size: 105%;
+}
+
+/* Menu Toggle */
+
+#check{
+    visibility: hidden;
+    display: none;
+}
+
+#menuToggle i{
+    position: absolute;
+    right: -40px;
+    top: 30px;
+    font-size: 25px;
+    border-radius: 3px;
+    color: #fff;
+    padding: 3px 8px;
+    cursor: pointer;
+    background: #000;
+}
+
+#bars{
+    background: red;
+}
+
+#check:checked ~ #leftCol{
+    transform: translateX(0);
+}
+
+#check:checked ~ #leftCol #bars{
+    display: none;
+}
+
+/* Partie droite - Contenu de la page */
+#rightCol{
+    background-color: var(--rightCol-color);
+}
+
+#rightCol-top{
+    text-align: center;
+}
+
+#title{
+    text-align: center;
+}
+
+/* Article */
+#plot-box{
+    display: flex;
+	justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#plot-box p{
+    font-size: 1em;
+    font-family: var(--rightCol);
+}
+
+/* Encadrement des articles */
+.article{
+    height: 330px;
+    width: 240px;
+    margin: 0px 20px 160px 20px;
+    text-align: center;
+}
+
+.article p{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.box{
+    height: 300px;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.box img{
+    border-radius: 19px;
+    max-height: 300px;
+    max-width: 240px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Encadrement des accessoires */
+.accessories{
+    margin: 0px 20px 145px 20px;
+}
+
+/* Encadrement des chaussures */
+.shoes{
+    height: 330px;
+    width: 350px;
+    margin: 0px 20px 170px 20px;
+}
+
+.box-shoes{
+    height: 300px;
+    width: 350px;
+}
+
+.box-shoes img{
+    border-radius: 19px;
+    max-height: 300px;
+    max-width: 350px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Encadrement des customs */
+.custom{
+    height: 330px;
+    width: 400px;
+    margin: 20px 20px 140px 20px;
+}
+
+.box-custom{
+    height: 300px;
+    width: 400px;
+}
+
+.box-custom img{
+    border-radius: 19px;
+    max-height: 300px;
+    max-width: 400px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Styles pour la gestion des articles */
+.article select{
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 3px 3px 0 3px;
+}
+
+.article i{
+    position: fixed;
+    right: 10px;
+    top: 60px;
+    color: black;
+    font-size: 60px;
+}
+
+.new{
+    margin: 0px 20px 60px 20px;
+}
+  
+/* Styles pour les boutons */
+.addQty {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+}
+
+.addQty:hover {
+    background-color: #333;
+}
+
+/* Styles pour le champ de quantité */
+.quantity {
+    font-size: 16px;
+    width: 50px;
+    padding: 5px;
+    border: 1px solid black;
+    text-align: center;
+    margin: 5px;
+}
+
+/* Styles pour le champ de stock */
+.stock {
+    font-size: 16px;
+    width: 50px;
+    padding: 5px;
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 3px;
+}
+
+.stock-panier{
+    display: flex;
+	justify-content:center;
+    flex-wrap: wrap;
+}
+
+.stockQuantity{
+    display: none;
+    margin-right: 10px;
+}
+
+/* Styles pour le bouton Ajouter au panier */
+.addPanier {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    font-size: 0.8em;
+    margin-top: 3px;
+}
+
+.addPanier:hover {
+    background-color: #333;
+}
+
+/* Désactiver les options qui ne sont pas disponibles */
+#disabled {
+    color: gray;
+    pointer-events: none;
+}
+
+/* Affichage du stock */
+#afficherStock{
+    position: absolute;
+    top: 140px;
+    right: 0;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin: 10px;
+    max-width: 120px;
+    font-size: 0.8cap;
+    width: 150px;
+}
+
+/* Vider le panier */
+#viderPanier{
+    position: absolute;
+    top: 140px;
+    right: 130px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin: 10px;
+    max-width: 120px;
+    font-size: 0.8cap;
+    width: 150px;
+}
+
+/*Firefox*/
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Chrome */
+input::-webkit-inner-spin-button, input::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin:0;
+}
+
+/* Opéra*/
+input::-o-inner-spin-button, input::-o-outer-spin-button { 
+    -o-appearance: none;
+    margin:0
+}
+
+/* Agrandissement des images : N'est présent que sur les images des articles */
+#imgExpand{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 20;
+}
+
+#imgExpand img{
+    border: solid 5px var(--white);
+    width: auto;
+    max-height: 80%;
+}
+
+#imgExpand.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Qui sommes-nous? */
+#about-top{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+#about-top h1{
+    text-align: justify;
+    margin: 20px;
+    font-size: 1.4em;
+}
+
+#about-top p{
+    text-align: justify;
+    margin: 20px;
+}
+
+#about-top p:first-of-type{
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: #d1b580;
+}
+
+#about-top img{
+    height: auto;
+    width: 450px;
+    max-width: 100%;
+    display: flex;
+    margin: auto;
+}
+
+#about-top-right{
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 20px;
+    border: solid 3px var(--about);
+}
+
+#about-top-right a {
+    color: var(--about);
+    text-decoration: none;
+    border-bottom: 1px solid var(--about);
+}
+  
+#about-top-right a:hover {
+    color: #0056b3;
+    border-bottom: 2px solid var(--about);
+}
+
+#about-bottom{
+    background-color: var(--about);
+    padding: 20px;
+    margin: 20px 60px 20px 60px;
+    width: auto;
+}
+
+/* Mentions légales */
+#legal-notices{
+    margin: 20px;
+}
+
+#legal-notices p{
+    text-align: justify;
+    margin-top: 20px;
+    text-indent: 20px;
+    line-height: 1.5;
+}
+
+#legal-notices a{
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 1px solid #007bff;
+}
+
+#legal-notices a:hover {
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Foire aux questions */
+#faq {
+    margin: 40px 20px;
+    text-align: justify;
+}
+  
+.faq-item h2 {
+    margin-bottom: 10px;
+}
+ 
+.faq-item p {
+    line-height: 1.5;
+    padding-bottom: 10px;
+    text-indent: 20px;
+}
+
+.faq-item p:last-of-type {
+    margin-bottom: 0;
+}
+  
+.faq-item a {
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 1px solid #007bff;
+}
+  
+.faq-item a:hover {
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+}
+  
+/* -- Bas de page -- */
+footer{
+    position: absolute;
+    width: 100%;
+}
+
+/* Bandeau des moyens de paiement */
+#footerHeadband{
+    background-color: var(--footer-headband);
+    color: var(--footer-headband-icon);
+    height: 40px;
+    width: 100%;
+}
+
+
+#headband-card{
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#headband-card img{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card{
+    width: 40px;
+    height: auto;
+}
+
+.card:first-of-type{
+    padding-top: 8px;
+}
+
+/* Informations du site */
+#mainFooter{
+    background-color: var(--footer-color);
+    color: var(--footer-font);
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    font-family: var(--footer);
+}
+
+/* Bas de page - partie gauche */
+#mainFooter-left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+/* Copyright */
+#mainFooter-left p{
+    display: inline;
+    vertical-align:bottom;
+}
+
+/* Logo */
+#footerLogo{
+    height: 60px;
+    width: auto;
+    margin-right: 30px;
+}
+
+/* Bas de page - partie droite */
+#mainFooter-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#mainFooter-right ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+#mainFooter-right ul:first-of-type{
+    padding-right: 10px;
+}
+
+#mainFooter-right ul:last-of-type{
+    padding-left: 0;
+}
+
+#mainFooter-right a{
+    color: var(--footer-font);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+#mainFooter-right a:hover{
+    color: var(--footer-hover);
+    transition: all 0.4s ease;
+}
+
+/* Réseaux sociaux */
+.icon{
+    width: 20px;
+    height: auto;
+}
+
+.icon:hover{
+    width: 30px;
+    height: auto;
+    transition: all 0.2s ease;
+}
+
+#border{
+    border-right: solid 1px var(--footer-font);
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* Lien vers le haut du site */
+#arrow{
+    position: fixed;
+    bottom: 150px;
+    right: 10px;
+    display: none;
+    z-index: 10;
+}
+  
+#arrow a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    background-color: #333;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+    opacity: 0.5;
+}
+  
+#arrow a:hover{
+    background-color: #666;
+    opacity: 0.5;
+}
+  
+
+/* -- Partie responsive -- */
+
+@media screen and (max-width: 680px)
+{
+    /* -- Haut de page -- */
+
+    /* Haut de page - Menu */
+    #mainHeader-right ul{
+        display: none;
+    }
+
+    /* Haut de page - Titre */
+    #mainHeader-right h1{
+        color: var(--header-title-font);
+        text-transform: uppercase;
+        display: flex;
+    }
+
+    /* -- Contenu de page -- */
+
+    /* Partie droite - Contenu de la page */
+    #afficherStock{
+        text-align: center;
+        position: static;
+    }
+
+    /* Vider le panier */
+    #viderPanier{
+        text-align: center;
+        position: static;
+    }
+
+    /* Lien vers le haut du site */
+    #arrow{
+        bottom: 170px;
+    }
+
+    /* -- Bas de page -- */
+
+    /* Bandeau des moyens de paiement */
+    #footerHeadband{
+        bottom: 120px;
+    }
+
+    /* Informations du site */
+    #mainFooter{
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: 120px
+    }
+
+    /* Bas de page - partie droite */
+    #mainFooter-right{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #mainFooter-right ul:first-of-type{
+        padding-bottom: 10px;
+    }
+
+    #border{
+        display: none;
+    }
+
+    /* Qui sommes-nous? */
+    #about h1,p{
+        font-size: 0.8em;
+    }
+    
+    #about-top{
+        flex-direction: column;
+    }
+
+    #about-top img{
+        max-width: 80%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    #about-top-right{
+        margin-left: 0;
+    }
+}
+
+@media screen and (min-width: 680px) and (max-width: 800px)
+{
+    /* -- Haut de page -- */
+
+    /* Haut de page - Menu */
+    #mainHeader-right ul{
+        display: none;
+    }
+
+    /* Haut de page - Titre */
+    #mainHeader-right h1{
+        color: var(--header-title-font);
+        text-transform: uppercase;
+        display: flex;
+    }
+
+    /* -- Contenu de page -- */
+
+    /* Partie droite - Contenu de la page */
+    #afficherStock{
+        text-align: center;
+        position: static;
+    }
+
+    /* Vider le panier */
+    #viderPanier{
+        text-align: center;
+        position: static;
+    }
+
+    /* -- Bas de page -- */
+
+    /* Informations du site */
+    #mainFooter{
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    /* Qui sommes-nous? */
+    #about h1,p{
+        font-size: 0.8em;
+    }
+    
+    #about-top{
+        flex-direction: column;
+    }
+
+    #about-top img{
+        max-width: auto;
+        margin-bottom: 20px;
+    }
+
+    #about-top-right{
+        margin-left: 0;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1032px)
+{
+    /* -- Haut de page -- */
+
+    /* Haut de page - Menu */
+    #mainHeader-right ul{
+        display: none;
+    }
+
+    /* Haut de page - Titre */
+    #mainHeader-right h1{
+        color: var(--header-title-font);
+        text-transform: uppercase;
+        display: flex;
+    }
+
+    /* -- Bas de page -- */
+
+    /* Qui sommes-nous? */
+    #about h1,p{
+        font-size: 0.8em;
+    }
+
+    #about-top{
+        flex-direction: column;
+    }
+
+    #about-top img{
+        width: auto;
+        margin-bottom: 20px;
+    }
+
+    #about-top-right{
+        margin-left: 0;
+    }
+}

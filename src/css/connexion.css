@@ -1,0 +1,152 @@
+:root{
+    /* -- Couleurs -- */
+    --main-color: white;
+
+	/* -- Images -- */
+	--img: url("../img/background-connexion.jpg");
+
+    /* -- Polices -- */
+    --all: 'poppins', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--all);
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: var(--img) no-repeat;
+    background-position: center;
+    background-size:cover;
+}
+
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createAccount-box{
+    width: 400px;
+    height: 730px;
+}
+
+h1{
+    font-size: 2em;
+    color: var(--main-color);
+    text-align: center;
+}
+
+/* Login */
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid var(--main-color);
+}
+
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: var(--main-color);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+
+input:focus ~ label, input:valid ~ label{
+    top: -5px;
+}
+
+.inputbox input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: var(--main-color);
+}
+
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: var(--main-color);
+    font-size: 1.2em;
+    top: 20px;
+}
+
+/* Oublie du mot de passe */
+.forget{
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;   
+}
+
+.forget a{
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forget a:hover{
+    text-decoration: underline;
+}
+
+/* Boutton pour s'identifier */
+button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+button:hover{
+    background: #ffffffa4;
+    transition: all 0.4s ease;
+}
+
+/* S'enregistrer */
+.register{
+    font-size: 0.9em;
+    color: var(--main-color);
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.register a{
+    color: var(--main-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register a:hover{
+    text-decoration: underline;
+}
+
+#ghost{
+    display: none;
+}

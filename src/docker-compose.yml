@@ -1,0 +1,68 @@
+version: "3.8"
+services:
+  php1:
+    image: php:7.4-apache    # Nom de l'image (ici c'est une image officielle)
+    container_name: php7.4_1   # Nom du conteneur
+    ports:                   # URL sur lequel rediriger la page
+      - 8080:80
+    volumes: 
+      - ./:/var/www/html     # Rooting du dossier php vers var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+
+  php2:
+    image: php:7.4-apache    # Nom de l'image (ici c'est une image officielle)
+    container_name: php7.4_2   # Nom du conteneur
+    ports:                   # URL sur lequel rediriger la page
+      - 8081:80
+    volumes: 
+      - ./:/var/www/html     # Rooting du dossier php vers var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0         # Nom de l'image (ici c'est une image officielle)
+    container_name: mysql8   # Nom du conteneur
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: pass 
+      MYSQL_DATABASE: Fauget
+      MYSQL_USER: test
+      MYSQL_PASSWORD: pass
+    ports:
+      - 9906:3306
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d # Montage automatique des scripts SQL
+
+  phpma:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: pass
+      UPLOAD_LIMIT: 20M
+    ports:
+      - 8899:80
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - 81:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - php1
+      - php2
