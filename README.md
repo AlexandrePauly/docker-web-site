@@ -25,6 +25,7 @@ Le projet utilise plusieurs services conteneurisés via Docker Compose :
 ```bash
 git clone https://github.com/AlexandrePauly/docker-web-site
 cd docker-web-site
+cd src
 ```
 
 ## Installation
