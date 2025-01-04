@@ -2,7 +2,7 @@
 
 ## Description
 
-Ce projet met en place une infrastructure complète pour le développement, le test et la production d'une application web basée sur PHP et MySQL, avec un équilibrage de charge via NGINX.
+Ce projet met en place une infrastructure complète pour le développement, le test et la production d'une application web en PHP/MySQL avec un équilibrage de charge via NGINX. Application web développée en 1ère année et l'objectif est de la conteneurisée.
 
 L'objectif est de permettre le développement en local tout en préparant un environnement de production livrable. Les conteneurs sont configurés pour exécuter et tester du code développé sur la machine hôte.
 
@@ -17,36 +17,71 @@ Le projet utilise plusieurs services conteneurisés via Docker Compose :
 
 ## Prérequis
 
-1. Docker et Docker-compose installés sur votre machine.
+Docker et Docker-compose installés sur votre machine.
+
     - Installer Docker
     - Installer Docker Compose
-2. Cloner ce dépôt :
-
-```bash
-git clone https://github.com/AlexandrePauly/docker-web-site
-cd docker-web-site
-cd src
-```
 
 ## Installation
 
-### Étapes pour démarrer l'infrastructure :
+### Étapes pour installer l'infrastructure :
 
-1. Construire et lancer les conteneurs :
+1. Cloner ce dépôt : ```git clone https://github.com/AlexandrePauly/docker-web-site```
+
+2. Naviguer dans le répertoire du projet: ```cd docker-web-site/src```
+
+3. Démarrer l'infrastructure : 
 
 ```bash
-docker-compose up --build
-chmod +x src/start.sh
+chmod +x start.sh
 ./start.sh
 ```
 
-2. Accéder aux services :
-    - Application Web : [http://localhost:81](http://localhost:81)
-    - PhpMyAdmin : [http://localhost:8899](http://localhost:8899)
+**Remarque** : Le script start.sh arrête les conteneurs existants, reconstruit l'infrastructure, et lance l'application automatiquement. Une fois lancé, l'application s'ouvre automatiquement dans votre navigateur.
 
-### Variables d'environnement :
+## Tests et accès aux services
 
-Les mots de passe et configurations sensibles sont définis dans le fichier docker-compose.yml. Pour une production sécurisée, utilisez un fichier .env.
+Accéder aux services :
+
+1. URL principale : [http://localhost:8080/php](http://localhost:8080/php)
+2. Accès direct aux instances PHP : 
+    - Instance 1 : Par défaut, l'application redirige sur la 1ère instance [http://localhost:8080/php/?instance=1](http://localhost:8080/php/?instance=1)
+    - Instance 2 : Mais il est possible de se déplacer sur la seconde via [http://localhost:8080/php/?instance=2](http://localhost:8080/php/?instance=2). 
+3. PhpMyAdmin : Accès à la base de données MySQL via l'interface graphique  [http://localhost:8899/](http://localhost:8899/).
+
+## Stress tests :
+
+Des tests de charge ont été réalisés pour évaluer la robustesse de l'infrastructure sous forte sollicitation.
+
+### Apache Benchmark (ab) : 
+
+1. Configuration : ```ab -n 1000 -c 100 http://localhost:8080/php. ```
+
+2. Logs : Les résultats sont disponibles dans le dossier /logs/ab/.
+
+### Locust :
+
+Locust permet de créer des scénarios de test plus avancés et interactifs.
+
+1. Lancer Locust après le démarrage des conteneurs : ```locust -f logs/locust/locustfile.py``` 
+
+2. Accéder à l'interface Locust : [http://localhost:8089/](http://localhost:8089/)
+
+3. Définir les paramètres de test : 
+
+    - Host : http://localhost:8089/php
+    - Nombre d'utilisateurs (Users) et Taux de spawn
+
+## Difficultés rencontrées :
+
+1. Modifications PHP nécessaires : Des pratiques tolérées en PHP local (comme les espaces avant <?php>) provoquent des erreurs dans un environnement conteneurisé avec NGINX. Cela a nécessité de :
+    - Supprimer les espaces ou caractères avant <?php
+    - Corriger des redirections avec header() pour éviter les erreurs *Cannot modify header information*.
+2. Gestion des ports : Le choix et la configuration des ports pour chaque service (PHP, NGINX, MySQL, PhpMyAdmin) ont demandé une attention particulière pour éviter des conflits et garantir une bonne isolation des services.
+
+## Variables d'environnement :
+
+Les mots de passe et configurations sensibles sont définis dans le fichier .env.
 
 ## Auteur
 

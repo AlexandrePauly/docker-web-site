@@ -14,4 +14,4 @@ class WebsiteUser(HttpUser):
     @task
     def connexion(self):
         payload = {"email": "a@a.com", "mdp": "aa"}
-        self.client.post("/basics/php/connexion.php", data=payload)
+        self.client.post("/basics/connexion.php", data=payload)
