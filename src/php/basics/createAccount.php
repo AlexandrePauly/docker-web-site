@@ -3,7 +3,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 }
-include_once('../bdd/bdd.php');
+include_once('../../bdd/bdd.php');
 include("head.php");
 
 $name = $surname = $email = $birthday = $password = $password_verif = '';

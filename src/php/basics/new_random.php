@@ -1,5 +1,5 @@
 <?php
-    include_once('bdd/bdd.php');
+    include_once('../bdd/bdd.php');
 
     //Initialisation d'un tableau vide
     $tab = array();

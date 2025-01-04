@@ -1,4 +1,6 @@
 <?php
+    ob_start();  // Démarre la bufferisation de sortie
+    
     if(!isset($_SESSION)) 
     { 
         session_start(); 
@@ -21,4 +23,6 @@
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+
+    ob_end_flush();  // Envoie la sortie du buffer et désactive la bufferisation
 ?>

@@ -1,9 +1,11 @@
 <?php
+    ob_start();  // Démarre la bufferisation de sortie
+    
     if(!isset($_SESSION)) 
     { 
         session_start(); 
     }
-    include_once('../bdd/bdd.php');
+    include_once('../../bdd/bdd.php');
 
     //Si l'utilisateur est connecté
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user'])) {
@@ -50,10 +52,12 @@
     }
     //Si l'utilisateur n'est pas connecté
     else if (isset($_SERVER['HTTP_REFERER'])) {
-        //Affichage d'une alerte
+        // Affichage d'une alerte
         echo '<script>alert("Vous devez vous connecter ou créer un compte pour ajouter un article au panier.");</script>';
-        
-        //Redirection vers la page de provenance
+
+        // Redirection vers la page de provenance
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
+    
+    ob_end_flush();  // Envoie la sortie du buffer et désactive la bufferisation
 ?>

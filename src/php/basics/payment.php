@@ -3,7 +3,7 @@
   { 
       session_start(); 
   }
-  include("head.php");
+  include("basics/head.php");
 ?>
 
 <body>
@@ -14,8 +14,8 @@
         <!-- Partie avant de la carte -->
         <div class="card-body" alt="Image de la carte">
           <!-- Logos -->
-          <img id="chip" src="../img/Card/chip.png" alt="">
-          <img id="visa-front" src="../img/Card/visa.png" alt="">
+          <img id="chip" src="../../img/Card/chip.png" alt="">
+          <img id="visa-front" src="../../img/Card/visa.png" alt="">
           
           <!-- Numéro de carte -->
           <div class="card-number">
@@ -44,7 +44,7 @@
               <p id="CVV"></p>
             </div>
           </div>
-          <img id="visa-back" src="..:img/Card/visa.png" alt="">
+          <img id="visa-back" src="../../img/Card/visa.png" alt="">
         </div>
       </div>
     </article>
@@ -114,5 +114,5 @@
   </main>
 
   <!-- Appel du code js pour faire une rotation de la carte -->
-  <script src="../js/rotate.js"></script>
+  <script src="../../js/rotate.js"></script>
 </body>

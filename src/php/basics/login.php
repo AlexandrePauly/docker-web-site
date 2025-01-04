@@ -1,5 +1,5 @@
 <?php
-    include_once('../bdd/bdd.php');
+    include_once('../../bdd/bdd.php');
 
     //Vérifier si l'utilisateur est déjà connecté
     if (isset($_SESSION['user'])) {

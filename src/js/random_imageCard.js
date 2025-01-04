@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (img){
     for (var i = 0 ; i < img.length ; i++){
       //Attribuer une URL aléatoire au fond de la div
-      img[i].style.backgroundImage = "url('" + "../img/Card/" + tabCard[rand] + "')";
+      img[i].style.backgroundImage = "url('" + "../../img/Card/" + tabCard[rand] + "')";
     }
   }
   else{

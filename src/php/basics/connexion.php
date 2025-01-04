@@ -8,9 +8,9 @@
 ?>
 
 <body>
-    <?php if (isset($error_message)): ?>
-        <div class="error"><?php echo $error_message; ?></div>
-    <?php endif; ?>
+<?php if (isset($error_message)): ?>
+    <div class="error"><?php echo $error_message; ?></div>
+<?php endif; ?>
 
     <!-- Menu pour se connecter -->
     <div class="form-box">

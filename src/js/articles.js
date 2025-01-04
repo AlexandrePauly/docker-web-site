@@ -70,34 +70,6 @@ function afficherStock(){
   }
 }
 
-function ajouterAuPanier(numElt){
-  //Récupérer la valeur de la quantité à mettre au panier
-  var quantity = document.getElementsByClassName("quantity")[numElt-1].value;
-
-  //Récupérer la valeur du stock
-  var stock = document.getElementsByClassName("stockQuantity")[numElt-1].value;
-
-  //Récupérer la valeur du panier à partir du stockage local
-  var panier = parseInt(localStorage.getItem("panierValue")) || 0;
-
-  var i = 0;
-
-  while(i < quantity && panier < 99){
-      panier++;
-      i++;
-  }
-
-  if(i < quantity){
-      alert("Vous ne pouvez pas sélectionner plus de 99 articles!");
-  }
-
-  if(stock - quantity >= 0){
-    //Modifier la valeur du panier
-    document.getElementById("panierValue").textContent = panier;
-    document.getElementsByClassName("stockQuantity")[numElt-1].value = stock - quantity;
-  }
-}
-
 var test = document.getElementsByClassName("size");
 
 for (i = 0 ; i < test.length ; i++){

@@ -3,7 +3,7 @@
     { 
         session_start(); 
     }
-    include_once('../bdd/bdd.php');
+    include_once('../../bdd/bdd.php');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Ouvrture de la connexion à la base de données

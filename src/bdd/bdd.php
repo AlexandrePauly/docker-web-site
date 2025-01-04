@@ -2,7 +2,7 @@
     //Fonction de connexion à la base de données à partir de la racine
     function connectDB() {
         //Variables de connexion à la base de données dans bddData.php
-        include_once('bdd/bddData.php');
+        include_once('../bdd/bddData.php');
 
         //Connection à la base de données
         $mysqli = new mysqli($host, $username, $password, $database);
@@ -20,7 +20,7 @@
     //Fonction de connexion à la base de données à partir du dossier php
     function connectDB2() {
         //Variables de connexion à la base de données dans bddData.php
-        include_once('../bdd/bddData.php');
+        include_once('../../bdd/bddData.php');
 
         //Connection à la base de données
         $mysqli = new mysqli($host, $username, $password, $database);
@@ -293,7 +293,7 @@
         }
 
         //Ouverture du fichier en mode écriture
-        $fichier = fopen("../sql/001-Fauget-data.sql", "a");
+        $fichier = fopen("../../sql/001-Fauget-data.sql", "a");
 
         fwrite($fichier, $write_query . "\n");
         

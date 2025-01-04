@@ -312,6 +312,13 @@ body{
     height: 100%;
 }
 
+.box p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+}
+
 /* Encadrement des accessoires */
 .accessories{
     margin: 0px 20px 145px 20px;

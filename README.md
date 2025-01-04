@@ -36,6 +36,8 @@ cd src
 
 ```bash
 docker-compose up --build
+chmod +x src/start.sh
+./start.sh
 ```
 
 2. Accéder aux services :
