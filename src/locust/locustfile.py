@@ -11,7 +11,6 @@ class WebsiteUser(HttpUser):
     def load_php2(self):
         self.client.get("/?instance=2")
 
-    
     @task
     def connexion(self):
         payload = {"email": "a@a.com", "mdp": "aa"}

@@ -1,34 +1,34 @@
 version: "3.8"
 services:
   php1:
-    image: ${PHP_VERSION}    # Nom de l'image (ici c'est une image officielle)
-    container_name: php7.4_1   # Nom du conteneur
-    ports:                   # URL sur lequel rediriger la page
+    image: ${PHP_VERSION}     # Nom de l'image (ici c'est une image officielle)
+    container_name: php7.4_1  # Nom du conteneur
+    ports:                    # URL sur lequel rediriger la page
       - ${PHP1_PORT}:80
     volumes: 
-      - ./:/var/www/html     # Rooting du dossier php vers var/www/html
+      - ./:/var/www/html      # Rooting du dossier php vers var/www/html
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
+    depends_on:               # Dépendance envers d'autres images avant exécution
       - db
 
   php2:
-    image: ${PHP_VERSION}    # Nom de l'image (ici c'est une image officielle)
-    container_name: php7.4_2   # Nom du conteneur
-    ports:                   # URL sur lequel rediriger la page
+    image: ${PHP_VERSION}     # Nom de l'image (ici c'est une image officielle)
+    container_name: php7.4_2  # Nom du conteneur
+    ports:                    # URL sur lequel rediriger la page
       - ${PHP2_PORT}:80
-    volumes: 
-      - ./:/var/www/html     # Rooting du dossier php vers var/www/html
+    volumes:
+      - ./:/var/www/html      # Rooting du dossier php vers var/www/html
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
+    depends_on:               # Dépendance envers d'autres images avant exécution
       - db
 
   db:
-    image: ${MYSQL_VERSION}         # Nom de l'image (ici c'est une image officielle)
-    container_name: mysql8   # Nom du conteneur
+    image: ${MYSQL_VERSION}              # Nom de l'image (ici c'est une image officielle)
+    container_name: mysql8               # Nom du conteneur
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -37,13 +37,13 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - ${MYSQL_PORT}:${DB_PORT}
+      - ${MYSQL_PORT}:${DB_PORT}          # URL sur lequel rediriger la page
     volumes:
       - ./sql:/docker-entrypoint-initdb.d # Montage automatique des scripts SQL
 
   phpma:
-    image: ${PHPMYADMIN_VERSION}
-    container_name: phpmyadmin
+    image: ${PHPMYADMIN_VERSION}  # Nom de l'image (ici c'est une image officielle)
+    container_name: phpmyadmin    # Nom du conteneur
     restart: always
     environment:
       PMA_ARBITRARY: 1
@@ -52,17 +52,17 @@ services:
       PMA_PASSWORD: pass
       UPLOAD_LIMIT: 20M
     ports:
-      - ${PHPMYADMIN_PORT}:80
-    depends_on:
+      - ${PHPMYADMIN_PORT}:80     # URL sur lequel rediriger la page
+    depends_on:                   # Dépendance envers d'autres images avant exécution
       - db
 
   nginx:
-    image: ${NGINX_VERSION}
-    container_name: nginx-proxy
+    image: ${NGINX_VERSION}      # Nom de l'image (ici c'est une image officielle)
+    container_name: nginx-proxy  # Nom du conteneur
     ports:
-      - ${NGINX_PORT}:80
+      - ${NGINX_PORT}:80         # URL sur lequel rediriger la page
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
+    depends_on:                  # Dépendance envers d'autres images avant exécution
       - php1
       - php2
