@@ -3,7 +3,7 @@
   { 
       session_start(); 
   }
-  include("basics/head.php");
+  include("head.php");
 ?>
 
 <body>
