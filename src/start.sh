@@ -1,19 +1,7 @@
 #!/bin/bash
 
-# Fonction pour vérifier si "docker compose" ou "docker-compose" est disponible
-function check_docker_compose {
-    if command -v docker-compose &> /dev/null; then
-        echo "docker-compose"
-    elif command -v docker compose &> /dev/null; then
-        echo "docker compose"
-    else
-        echo "Aucune version de Docker Compose trouvée. Veuillez installer Docker Compose."
-        exit 1
-    fi
-}
-
-# Détecte la commande Docker Compose à utiliser
-DOCKER_COMPOSE_CMD=$(check_docker_compose)
+# Commande Docker Compose à utiliser
+DOCKER_COMPOSE_CMD='docker-compose'
 
 # Stoppe et supprime les conteneurs en cours d'exécution
 echo "Arrêt des conteneurs en cours..."

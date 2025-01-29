@@ -30,7 +30,14 @@ Docker et Docker-compose installés sur votre machine.
 
 2. Naviguer dans le répertoire du projet: ```cd docker-web-site/src```
 
-3. Démarrer l'infrastructure : 
+3. Modifier la commande Docker Compose en fonction de la version installée :
+
+```bash
+DOCKER_COMPOSE_CMD='docker-compose' # Commande par défaut
+DOCKER_COMPOSE_CMD='docker compose' # Commande utilisée sur des versions plus récentes
+```
+
+4. Démarrer l'infrastructure : 
 
 ```bash
 chmod +x start.sh
@@ -55,9 +62,11 @@ Des tests de charge ont été réalisés pour évaluer la robustesse de l'infras
 
 ### Apache Benchmark (ab) : 
 
-1. Configuration : ```ab -n 1000 -c 100 http://localhost:8080/php. ```
+1. Configuration : ```ab -n 1000 -c 100 http://localhost:8080/php```
 
 2. Logs : Les résultats sont disponibles dans le dossier /logs/ab/.
+
+**Remarque** : Penser à installer Apache Benchmark au préalable pour effectuer les tests : ```pip install ab-api```
 
 ### Locust :
 
@@ -69,8 +78,10 @@ Locust permet de créer des scénarios de test plus avancés et interactifs.
 
 3. Définir les paramètres de test : 
 
-    - Host : http://localhost:8089/php
+    - Host : http://localhost:8080/php
     - Nombre d'utilisateurs (Users) et Taux de spawn
+
+**Remarque** : Penser à installer Locust au préalable pour effectuer les tests : ```pip install locust```
 
 ## Difficultés rencontrées :
 
